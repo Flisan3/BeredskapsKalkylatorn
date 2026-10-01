@@ -1,4 +1,116 @@
 ﻿@page
 @model BeredskapsKalkylatorn.Pages.KalkylatorModel
 @{
+    <form method="post">
+
+        <div class="form-floating mb-3">
+            <input asp-for="Kalkylator.Name" class="form-control">
+            <label asp-for="Kalkylator.Name">Namn</label>
+            <span asp-validation-for="Kalkylator.Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input asp-for="Kalkylator.Email" class="form-control">
+            <label asp-for="Kalkylator.Email">Email address</label>
+            <span asp-validation-for="Kalkylator.Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-check form-switch">
+            <input asp-for="Kalkylator.DrinkingWater" class="form-check-input">
+            <label asp-for="Kalkylator.DrinkingWater" class="form-check-label">
+                Har du tillgång till dricksvatten?
+            </label>
+        </div>
+
+        <div class="form-check form-switch">
+            <input asp-for="Kalkylator.Food" class="form-check-input">
+            <label asp-for="Kalkylator.Food" class="form-check-label">
+                Har du mat för minst tre dagar?
+            </label>
+        </div>
+
+        <div class="form-check form-switch">
+            <input asp-for="Kalkylator.Flashlight" class="form-check-input">
+            <label asp-for="Kalkylator.Flashlight" class="form-check-label">
+                Har du en ficklampa?
+            </label>
+        </div>
+
+        <div class="form-check form-switch">
+            <input asp-for="Kalkylator.Radio" class="form-check-input">
+            <label asp-for="Kalkylator.Radio" class="form-check-label">
+                Har du en batteridriven radio?
+            </label>
+        </div>
+
+        <div class="form-check form-switch">
+            <input asp-for="Kalkylator.FirstAidKit" class="form-check-input">
+            <label asp-for="Kalkylator.FirstAidKit" class="form-check-label">
+                Har du ett första hjälpen-kit hemma?
+            </label>
+        </div>
+
+        <div class="form-check form-switch">
+            <input asp-for="Kalkylator.ExtraBatteries" class="form-check-input">
+            <label asp-for="Kalkylator.ExtraBatteries" class="form-check-label">
+                Har du extra batterier till dina elektroniska apparater?
+            </label>
+        </div>
+
+        <div class="form-check form-switch">
+            <input asp-for="Kalkylator.AlternativeCooking" class="form-check-input">
+            <label asp-for="Kalkylator.AlternativeCooking" class="form-check-label">
+                Har du tillgång till ett alternativt sätt att laga mat, exempelvis ett stormkök?
+            </label>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Kalkylator.HouseholdSize" class="form-label">
+                Hur många personer finns i ditt hushåll?
+            </label>
+
+            <input asp-for="Kalkylator.HouseholdSize"
+                   type="range"
+                   class="form-range"
+                   min="1"
+                   max="5">
+
+            <div class="d-flex justify-content-between">
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5+</span>
+            </div>
+
+            <span asp-validation-for="Kalkylator.HouseholdSize" class="text-danger"></span>
+        </div>
+
+        <div class="form-floating mb-3">
+            <textarea asp-for="Kalkylator.Tips"
+                      class="form-control"
+                      style="height: 120px"></textarea>
+            <label asp-for="Kalkylator.Tips">Egna beredskapstips</label>
+            <span asp-validation-for="Kalkylator.Tips" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Beräkna beredskapspoäng</button>
+
+    </form>
+
+    @if (Model.HasCalculated)
+    {
+        <div class="alert alert-info mt-4">
+            <h3>Sammanställning</h3>
+
+            <p><strong>Namn:</strong> @Model.Kalkylator.Name</p>
+
+            <hr />
+
+            <h3>Din beredskapspoäng: @Model.Score / 4</h3>
+            <h5>@Model.Result</h5>
+        </div>
+
+    }
+    <script src="~/js/site.js" asp-append-version="true"></script>
 }
