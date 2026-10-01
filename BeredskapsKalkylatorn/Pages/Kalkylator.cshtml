@@ -105,12 +105,15 @@
 
             <p><strong>Namn:</strong> @Model.Kalkylator.Name</p>
 
+            <p><strong>E-post:</strong> @Model.Kalkylator.Email</p>
+
+            <p><strong>Egna beredskapstips:</strong> @Model.Kalkylator.Tips</p>
+
             <hr />
 
             <h3>Din beredskapspoäng: @Model.Score / 4</h3>
             <h5>@Model.Result</h5>
         </div>
-
     }
     <script src="~/js/site.js" asp-append-version="true"></script>
 }
